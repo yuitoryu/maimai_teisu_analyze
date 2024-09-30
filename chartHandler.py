@@ -594,4 +594,3 @@ class chainedSlideRegister():
         return [slide.prepare_info_block() for slide in self.chain]
             
         
-        
