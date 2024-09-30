@@ -127,16 +127,17 @@ class chartDecomposer():
     def output_data(self):
         self.remove_repeated_slide()
         note = {'tap' : self.tap,
-                  'btap' : self.btap,
-                  'xtap' : self.xtap,
-                  'bxtap' :self.bxtap,
-                  'hold' : self.hold,
-                  'bhold' : self.bhold,
-                  'xhold' : self.xhold,
-                  'bxhold' :self.bxhold,
-                  'touch' : self.touch,
-                  'slide' : self.slide,
-                  'bslide' : self.bslide}
+                'btap' : self.btap,
+                'xtap' : self.xtap,
+                'bxtap' :self.bxtap,
+                'hold' : self.hold,
+                'bhold' : self.bhold,
+                'xhold' : self.xhold,
+                'bxhold' :self.bxhold,
+                'touch' : self.touch,
+                'Ch' : self.Ch,
+                'slide' : self.slide,
+                'bslide' : self.bslide}
         return {'rating_num' : self.rating_num, 'note' : note}
         
     def fetch_slice_in_string(self, text, start_index, target):
@@ -488,10 +489,12 @@ class chartDecomposer():
                     if shape != 'V':
                         for end in self.slide[begin][shape].keys():
                             self.slide[begin][shape][end].append(info_block)
+                            self.bslide[begin][shape][end].append(info_block)
                     else:
                         for mid in self.slide[begin][shape].keys():
                             for end in self.slide[begin][shape][mid].keys():
                                 self.slide[begin][shape][mid][end].append(info_block)
+                                self.bslide[begin][shape][mid][end].append(info_block)
 
 
 
@@ -590,4 +593,5 @@ class chainedSlideRegister():
     def prepare_info_blocks(self):
         return [slide.prepare_info_block() for slide in self.chain]
             
+        
         
